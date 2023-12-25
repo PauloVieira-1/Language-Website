@@ -13,10 +13,6 @@ def create_connection(db_file):            # ESTABLISHES CONNECTION TO DB #
 
     return conn
 
-if __name__ == '__main__':
-    create_connection(r"/Users/josevieira/Desktop/Language Website/sqlite.db")
-
-
 
 def create_table(conn, create_table_sql):       # CREATES TABLES # 
     
@@ -29,4 +25,24 @@ def create_table(conn, create_table_sql):       # CREATES TABLES #
 
 
 def main():             # Contains tables, connection, etc #
-    pass 
+
+    database = r"/Users/josevieira/Desktop/Language Website/sqlite.db"
+
+    
+    xyz_tabel = """ CREATE TABLE IF NOT EXISTS xyz (
+                        id integer PRIMARY KEY,
+                        name text NOT NULL,
+                        ); """
+    
+    # OTHER TABLES #
+    
+
+    conn = create_connection(database)
+
+    if conn is not None:
+        create_table(conn, xyz_tabel)
+    else:
+        print("Cannot create connection")
+
+if __name__ == '__main__':
+    create_connection(r"/Users/josevieira/Desktop/Language Website/sqlite.db")
