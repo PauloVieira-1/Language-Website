@@ -29,7 +29,7 @@ def main():             # Contains tables, connection, etc #
     database = r"/Users/josevieira/Desktop/Language Website/sqlite.db"
 
     
-    xyz_tabel = """ CREATE TABLE IF NOT EXISTS xyz (
+    xyz_table = """ CREATE TABLE IF NOT EXISTS xyz (
                         id integer PRIMARY KEY,
                         name text NOT NULL,
                         ); """
@@ -40,7 +40,7 @@ def main():             # Contains tables, connection, etc #
     conn = create_connection(database)
 
     if conn is not None:
-        create_table(conn, xyz_tabel)
+        create_table(conn, xyz_table)
     else:
         print("Cannot create connection")
 
