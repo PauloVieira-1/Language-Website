@@ -1,0 +1,8 @@
+{
+  "noun": {
+    "gender": "het|de",
+    "plural": "(-(en|n|s))|<irregular>",
+    "diminutive": "regular|<irregular>",
+    "display": "<gender> <word>, <plural>, diminutive: <diminutive>"
+  }
+}

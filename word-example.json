@@ -1,0 +1,30 @@
+{
+  "$schema": "https://example.com/word.schema.json",
+  "id": "1",
+  "word": "woord",
+  "display": "het woord",
+  "lang": "nl",
+  "pos": "noun",
+  "meta": {
+    "gender": "het",
+    "plural": "-en",
+    "diminutive": "...",
+    "ethymology": "Middle Dutch wort",
+    "ipas": [
+      "/ʋoːrt/"
+    ]
+  },
+  "forms": [
+    {
+      "word": "woorden",
+      "type": "plural"
+    },
+    {
+      "word": "woordje",
+      "type": "diminutive"
+    }
+  ],
+  "translations": [
+    "word"
+  ]
+}

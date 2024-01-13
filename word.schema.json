@@ -1,0 +1,88 @@
+{
+  "$schema": "https://example.com/word.schema.json",
+  "$id": "https://example.com/word.schema.json",
+  "title": "Word",
+  "description": "Lexical data about a word",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "A GUID unique identifier",
+      "type": "string",
+      "exclusiveMinimum": 0
+    },
+    "word": {
+      "description": "The word itself",
+      "type": "string",
+      "exclusiveMinimum": 0
+    },
+    "display": {
+      "description": "A short string containing the word and some unique meta data corresponding to the pos and language",
+      "type": "string",
+      "exclusiveMinimum": 0
+    },
+    "lang": {
+      "description": "Language",
+      "type": "string",
+      "exclusiveMinimum": 0
+    },
+    "pos": {
+      "description": "Part of speech (ex: noun, verb...)",
+      "type": "string",
+      "exclusiveMinimum": 0
+    },
+    "meta": {
+      "description": "Various properties defining the word",
+      "type": "object",
+      "exclusiveMinimum": 0,
+      "properties": {
+        "ipas": {
+          "type": "array",
+          "uniqueItems": true
+        },
+        "ethymology": {
+          "type": "string"
+        }
+      }
+    },
+    "forms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "form": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "exclusiveMinimum": 0
+    },
+    "translations": {
+      "type": "array",
+      "exclusiveMinimum": 0,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "examples": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "word",
+    "display",
+    "lang",
+    "pos",
+    "meta",
+    "forms",
+    "translations"
+  ]
+}
