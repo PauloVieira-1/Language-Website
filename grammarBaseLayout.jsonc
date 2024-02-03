@@ -1,0 +1,54 @@
+{
+  "miscellaneous": {
+    "alphabet": {
+      "alphabet-table": null,
+      "cursive": null,
+      "sound-combinations": null
+    },
+    "language-quirks": {}
+  },
+  "parts-of-speech": {
+    "noun": {
+      "gender": {},
+      "plural": null
+    },
+    "pronouns": {
+      "personal": null,
+      "subject": null,
+      "object": null,
+      "possessive": null,
+      "demonstrative": null,
+      "relative": null,
+      "interrogative": null,
+      "formality": null
+    },
+    "verb": {},
+    "adjectives": {
+      "comparisson": {
+        "comparisson-degrees": null, //absolute superlative
+        "equality": null
+      }
+    },
+    "articles": {
+      "definite": null,
+      "indefinite": null
+    },
+    "adverbs": {
+      "frequency": null,
+      "from-noun": "parts-of-speech/noun/to-adverb"
+    },
+    "prepositions": {},
+    "conjunctions": {},
+    "other": {
+      "interjections": null
+    }
+  },
+  "sentence-structure": {
+    "questions": null,
+    "imperative": null,
+    "word-order": {}
+  },
+  "tenses": {},
+  "conditionals": {},
+  "punctuation": {}
+}

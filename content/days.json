@@ -1,0 +1,102 @@
+[
+  [
+    "lang",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ],
+  [
+    "nl",
+    "maandag",
+    "dinsdag",
+    "woensdag",
+    "donderdag",
+    "vrijdag",
+    "zaterdag",
+    "zondag"
+  ],
+  [
+    "de",
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag",
+    "Sonntag"
+  ],
+  [
+    "pt",
+    "Segunda-feira (seg.)",
+    "Terça-feira (ter.)",
+    "Quarta-feira (qua.)",
+    "Quinta-feira (qui.)",
+    "Sexta-feira (sex.)",
+    "Sábado (sáb.)",
+    "Domingo (dom.)"
+  ],
+  [
+    "fr",
+    "lundi",
+    "mardi",
+    "mercredi",
+    "jeudi",
+    "vendredi",
+    "samedi",
+    "dimanche"
+  ],
+  [
+    "es",
+    "lunes",
+    "martes",
+    "miércoles",
+    "jueves",
+    "viernes",
+    "sábado",
+    "domingo"
+  ],
+  [
+    "it",
+    "lunedì",
+    "martedì",
+    "mercoledì",
+    "giovedì",
+    "venerdì",
+    "sabato",
+    "domenica"
+  ],
+  [
+    "lat",
+    "dies Lune",
+    "dies Martis",
+    "dies Mercurii",
+    "dies Iovis",
+    "dies Veneris",
+    "dies Sabbati",
+    "dies Dominica"
+  ],
+  [
+    "bg",
+    "понеделник",
+    "вторник",
+    "сряда",
+    "четвъртък",
+    "петък",
+    "събота",
+    "неделя"
+  ],
+  [
+    "rs",
+    "понедельник",
+    "вторник",
+    "среда",
+    "четверг",
+    "пятница",
+    "суббота",
+    "воскресенье"
+  ]
+]
