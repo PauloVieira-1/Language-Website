@@ -16,9 +16,4 @@ class DB {
 	}
 }
 
-const data = new DB().get();
-data["dsadas"] = 432;
-
-new DB().save(data);
-
 module.exports = DB;
