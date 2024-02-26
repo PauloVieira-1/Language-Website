@@ -11,6 +11,15 @@ const config = new Config();
 
 const app = express();
 
+// Start of my nonsense 
+
+	// const mongoose = require('mongoose'); 
+	// const bodyParser = require('body-parser');
+
+	// app.use(bodyParser.urlencoded({extended: true}));
+
+// End of my nonsense 
+
 if (config.isDev) {
 	const livereload = require("livereload");
 	const connectLiveReload = require("connect-livereload");
@@ -51,6 +60,35 @@ app.use((err: createError.HttpError, req, res: Response, next) => {
 	res.status(err.status || 500);
 	res.render("error");
 });
+
+// My Nonsense Mongodb Stuff 
+
+	// mongoose.connect('mongodb://localhost:27017', {
+	//   useNewUrlParser: true,
+	//   useUnifiedTopology: true
+	// })
+	// .then(() => {
+	//   console.log('Connected to MongoDB');
+	// })
+	// .catch((err) => {
+	//   console.error('Error connecting to MongoDB:', err);
+	// });
+
+	// const notesSchema = new mongoose.Schema({
+	//     word: String,
+	//     Langauge: String,
+	//     Gender: String
+	// });
+
+	// const Note = mongoose.model("Note", notesSchema);
+
+	// app.get("/", function(req, res){
+	// 	res.send("express is working")
+		
+	// 	// res.sendFile(__dirname + "index.html");
+	// })
+
+// End of my nonsense 
 
 app.listen(
 	config.port,
