@@ -13,10 +13,10 @@ const app = express();
 
 // Start of my nonsense 
 
-	// const mongoose = require('mongoose'); 
-	// const bodyParser = require('body-parser');
+const mongoose = require('mongoose'); 
+const bodyParser = require('body-parser');
 
-	// app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // End of my nonsense 
 
@@ -63,30 +63,42 @@ app.use((err: createError.HttpError, req, res: Response, next) => {
 
 // My Nonsense Mongodb Stuff 
 
-	// mongoose.connect('mongodb://localhost:27017', {
-	//   useNewUrlParser: true,
-	//   useUnifiedTopology: true
-	// })
-	// .then(() => {
-	//   console.log('Connected to MongoDB');
-	// })
-	// .catch((err) => {
-	//   console.error('Error connecting to MongoDB:', err);
-	// });
+	mongoose.connect('mongodb://localhost:27017', {
+	  useNewUrlParser: true,
+	  useUnifiedTopology: true
+	})
+	.then(() => {
+	  console.log('Connected to MongoDB');
+	})
+	.catch((err) => {
+	  console.error('Error connecting to MongoDB:', err);
+	});
 
-	// const notesSchema = new mongoose.Schema({
-	//     word: String,
-	//     Langauge: String,
-	//     Gender: String
-	// });
+	const notesSchema = new mongoose.Schema({
+	    word: String,
+	    Langauge: String,
+	    Gender: String
+	});
 
-	// const Note = mongoose.model("Note", notesSchema);
+	const Note = mongoose.model("Note", notesSchema);
 
-	// app.get("/", function(req, res){
-	// 	res.send("express is working")
+	app.get("/", function(req, res) {
+		res.send("express is working")
 		
-	// 	// res.sendFile(__dirname + "index.html");
-	// })
+		// res.sendFile(__dirname + "index.html");  --->> to be used when 'express is working'
+	})
+
+	app.post("/", function(req, res) {
+		let newNote = new Note({
+			Word: req.body.word,
+			Language: req.body.langauge,
+			Gender: req.body.gender 
+		})
+
+		newNote.save();
+		res.redirect("/")
+	})
+
 
 // End of my nonsense 
 

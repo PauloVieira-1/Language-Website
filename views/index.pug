@@ -5,26 +5,9 @@ block content
 
   p Word List
   
-  form.form
-    input(name="word" type="text" placeholder="Word")
-    input(name="language" type="text" placeholder="Language")
-    input(name="gender" type="text" placeholder="Gender")
+  .container
+  form(method="post" action="/")
+    input(type="text" name="Word" placeholder="Word")
+    input(type="text" name="Language" placeholder="Language")
+    input(type="text" name="Gender" placeholder="Language")
     button(type="submit") Submit
-
-  script.
-    const formE1 = document.querySelector('.form')
-    formE1.addEventListener('submit', event => {
-      event.preventDefault();
-
-      const formData = new FormData(formE1);
-      const data = Object.fromEntries(formData);
-
-      fetch('http://localhost:3000/', {
-          method: 'POST',
-          headers: {
-              'Content-Type' : 'application/json'
-          },
-          body: JSON.stringify(data)
-      });
-    
-    });
