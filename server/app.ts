@@ -4,10 +4,8 @@ import createError from "http-errors";
 import path from "path";
 
 import contextMiddleware from "./middlewares/contextMiddleware";
-import languageMiddleware from "./middlewares/languageMiddleware";
 import Config from "./utils/config";
 
-import content from "./routes/content";
 import indexRouter from "./routes/index";
 type GreetFunction = (req, res: Response, next) => void;
 
@@ -16,6 +14,12 @@ const cookies: GreetFunction = cookieParser();
 
 const app = express();
 
+// Start of my nonsense
+
+import mongoose from "mongoose";
+
+// End of my nonsense
+
 if (config.isDev) {
 	const livereload = require("livereload");
 	const connectLiveReload = require("connect-livereload");
@@ -23,7 +27,6 @@ if (config.isDev) {
 	const liveReloadServer = livereload.createServer({
 		exts: ["html", "css", "js", "ts", "pug"],
 	});
-
 	for (const dir of ["public", "views", "content", "server"]) {
 		liveReloadServer.watch(path.join(__dirname, "..", dir));
 	}
@@ -39,16 +42,46 @@ app.set("view engine", "pug");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookies);
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(express.static(path.join(__dirname, "..", "content")));
 app.use(express.static(path.join(__dirname, "..", "node_modules")));
 
 app.use(contextMiddleware);
 app.use("/", indexRouter);
+app.use("/users", usersRouter);
 
-app.use("/:lang", languageMiddleware);
-app.use("/:lang", content);
+// My Nonsense Mongodb Stuff
+
+mongoose
+	.connect(config.mongoDbConnetcionString)
+	.then(() => {
+		console.log("Connected to MongoDB");
+	})
+	.catch((err) => {
+		console.error("Error connecting to MongoDB:", err);
+	});
+
+const notesSchema = new mongoose.Schema({
+	word: String,
+	language: String,
+	gender: String,
+});
+
+const Note = mongoose.model("Note", notesSchema);
+
+app.post("/", function (req, res) {
+	let newNote = new Note({
+		word: req.body.word,
+		language: req.body.language,
+		gender: req.body.gender,
+	});
+
+	newNote.save();
+	res.redirect("/");
+});
+
+// End of my nonsense
 
 app.use((req, res, next) => {
 	next(createError(404));
@@ -68,3 +101,5 @@ app.listen(
 		config.isDev &&
 		console.log("Server is listening on http://localhost:" + config.port)
 );
+
+console.log(process);

@@ -2,4 +2,12 @@ extends layout
 
 block content
   h1= title
-  p.bg-primary Welcome to title
+
+  p Word List
+  
+  .container
+  form(method="post" action="/")
+    input(type="text" name="word" placeholder="Word")
+    input(type="text" name="language" placeholder="Language")
+    input(type="text" name="gender" placeholder="Gender")
+    button(type="submit") Submit
