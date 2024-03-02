@@ -6,7 +6,7 @@
   "module": "",
   "scripts": {
     "start": "dotenvx run --env-file=./config/.env.production -- node ./dist/app.js",
-    "build": "tsc -p ./config/tsconfig.json",
+    "build": "tsc",
     "dev": "dotenvx run --env-file=./config/.env.dev -- nodemon --config ./config/nodemon.json server/app.ts",
     "watch": "dotenvx run --env-file=./config/.env.dev --webpack --config ./config/webpack.config.js --watch",
     "set-up": "node ./config/set-up-util.js load"
@@ -20,6 +20,7 @@
     "debug": "~2.6.9",
     "express": "^4.18.2",
     "http-errors": "~1.6.3",
+    "mongoose": "^8.2.0",
     "pug": "^3.0.2",
     "typescript": "^5.3.3"
   },

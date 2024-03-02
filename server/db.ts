@@ -1,9 +1,11 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
-class DB {
+export default class DB {
+	private filePath;
+
 	constructor() {
-		this.filePath = path.resolve(__dirname, "data.json");
+		this.filePath = path.resolve(__dirname, "..", "content", "data.json");
 		if (!fs.existsSync(this.filePath)) fs.writeFileSync(this.filePath, "{}");
 	}
 
@@ -11,9 +13,11 @@ class DB {
 		return fs.readFileSync(this.filePath).toJSON();
 	}
 
+	getById(id) {
+		return {};
+	}
+
 	save(data) {
 		fs.writeFileSync(this.filePath, data);
 	}
 }
-
-module.exports = DB;

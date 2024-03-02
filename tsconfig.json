@@ -13,7 +13,11 @@
     "/node_modules"
   ],
   "include": [
-    "../server/*",
-    "../public/**/*.ts",
+    "server/*",
+    "@types/*",
+    "public/**/*.ts"
+  ],
+  "typeRoots": [
+    "@types/*"
   ]
 }

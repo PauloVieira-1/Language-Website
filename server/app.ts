@@ -1,13 +1,18 @@
+import cookieParser from "cookie-parser";
 import express, { Response } from "express";
 import createError from "http-errors";
 import path from "path";
 
+import contextMiddleware from "./middlewares/contextMiddleware";
+import languageMiddleware from "./middlewares/languageMiddleware";
 import Config from "./utils/config";
 
+import content from "./routes/content";
 import indexRouter from "./routes/index";
-import usersRouter from "./routes/users.js";
+type GreetFunction = (req, res: Response, next) => void;
 
 const config = new Config();
+const cookies: GreetFunction = cookieParser();
 
 const app = express();
 
@@ -18,6 +23,7 @@ if (config.isDev) {
 	const liveReloadServer = livereload.createServer({
 		exts: ["html", "css", "js", "ts", "pug"],
 	});
+
 	for (const dir of ["public", "views", "content", "server"]) {
 		liveReloadServer.watch(path.join(__dirname, "..", dir));
 	}
@@ -33,12 +39,16 @@ app.set("view engine", "pug");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(cookies);
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(express.static(path.join(__dirname, "..", "content")));
+app.use(express.static(path.join(__dirname, "..", "node_modules")));
 
+app.use(contextMiddleware);
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+
+app.use("/:lang", languageMiddleware);
+app.use("/:lang", content);
 
 app.use((req, res, next) => {
 	next(createError(404));
@@ -49,7 +59,7 @@ app.use((err: createError.HttpError, req, res: Response, next) => {
 	res.locals.error = config.isDev ? err : {};
 
 	res.status(err.status || 500);
-	res.render("error");
+	res.render("error", { context: req.context });
 });
 
 app.listen(

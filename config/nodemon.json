@@ -5,5 +5,5 @@
     "dist",
     "tests"
   ],
-  "exec": "ts-node -P ./config/tsconfig.json"
+  "exec": "ts-node"
 }
