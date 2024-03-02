@@ -1,0 +1,7 @@
+extends ../layout
+
+block content
+  ul.list-group
+    each val in words
+      li.ist-group-item
+        span #{val.word} #{val.language} #{val.gender}

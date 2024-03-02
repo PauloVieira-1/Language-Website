@@ -1,24 +1,26 @@
 import cookieParser from "cookie-parser";
 import express, { Response } from "express";
 import createError from "http-errors";
+import mongoose from "mongoose";
 import path from "path";
 
 import contextMiddleware from "./middlewares/contextMiddleware";
 import Config from "./utils/config";
 
 import indexRouter from "./routes/index";
-type GreetFunction = (req, res: Response, next) => void;
+import vocabularyRouter from "./routes/vocabulary";
 
 const config = new Config();
-const cookies: GreetFunction = cookieParser();
-
 const app = express();
 
-// Start of my nonsense
-
-import mongoose from "mongoose";
-
-// End of my nonsense
+mongoose
+	.connect(config.mongoDbConnetcionString)
+	.then(() => {
+		console.log("Connected to MongoDB");
+	})
+	.catch((err) => {
+		console.error("Error connecting to MongoDB:", err);
+	});
 
 if (config.isDev) {
 	const livereload = require("livereload");
@@ -49,41 +51,10 @@ app.use(express.static(path.join(__dirname, "..", "node_modules")));
 
 app.use(contextMiddleware);
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
-
-// My Nonsense Mongodb Stuff
-
-mongoose
-	.connect(config.mongoDbConnetcionString)
-	.then(() => {
-		console.log("Connected to MongoDB");
-	})
-	.catch((err) => {
-		console.error("Error connecting to MongoDB:", err);
-	});
-
-const notesSchema = new mongoose.Schema({
-	word: String,
-	language: String,
-	gender: String,
-});
-
-const Note = mongoose.model("Note", notesSchema);
-
-app.post("/", function (req, res) {
-	let newNote = new Note({
-		word: req.body.word,
-		language: req.body.language,
-		gender: req.body.gender,
-	});
-
-	newNote.save();
-	res.redirect("/");
-});
-
-// End of my nonsense
+app.use("/vocabulary", vocabularyRouter);
 
 app.use((req, res, next) => {
+	if (config.isDev) console.log(req.url);
 	next(createError(404));
 });
 
@@ -101,5 +72,3 @@ app.listen(
 		config.isDev &&
 		console.log("Server is listening on http://localhost:" + config.port)
 );
-
-console.log(process);

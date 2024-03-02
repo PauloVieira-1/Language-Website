@@ -5,10 +5,9 @@
   "main": "./server/app.js",
   "module": "",
   "scripts": {
-    "start": "dotenvx run --env-file=./config/.env.production -- node ./dist/app.js",
     "build": "tsc",
     "dev": "dotenvx run --env-file=./config/.env.dev -- nodemon --config ./config/nodemon.json server/app.ts",
-    "watch": "dotenvx run --env-file=./config/.env.dev --webpack --config ./config/webpack.config.js --watch",
+    "db": " sudo docker run -p 27017:27017 -v ./data:/data/db  mongo",
     "set-up": "node ./config/set-up-util.js load"
   },
   "author": "",

@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  ul.list-group
+    each val in category
+      li.ist-group-item
+        a(href="/vocabulary/category/#{val.name}") 
+          span= val.name
